@@ -2,23 +2,23 @@
 "use strict";
 
 function getArrayParams(...arr) {
-	if (!arr.length > 0) {
-		return 0;
-	}
-	let sum = 0;
-	let avg = 0;
-
-	let min = Math.min(...arr);
-	let max = Math.max(...arr);
-	sum = arr.reduce((a, b) => (a + b)) / arr.length;
-	avg = Number((sum).toFixed(2));
-
-
-	return {
-		min: min,
-		max: max,
-		avg: avg
-	};
+  let min = Infinity;
+  let max = -Infinity;
+  let sum = 0;
+  
+  for (let num of arr) {
+      if (num > max) {
+          max = num;
+      }
+      if (num < min) {
+          min = num;
+      }
+      sum += num;
+  }
+  
+  const avg = (sum / arr.length).toFixed(2);
+  
+  return { min, max, avg: parseFloat(avg) };
 }
 
 
